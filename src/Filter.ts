@@ -29,13 +29,17 @@ export default class Filter {
    *
    */
   constructor(config?: { languages: language[] }) {
-    this.words = new Set<string>();
-    const languagesChecks = new Set<language>(config?.languages);
-    if (languagesChecks.size !== 0) {
-      languagesChecks.forEach(lang => {
-        this.words = new Set<string>([...this.words, ...dictionary[lang]]);
-      });
-    } else this.words = new Set<string>(dictionary.english);
+    let words = dictionary.english;
+
+    if (config) {
+      const languagesChecks = new Set<language>(config?.languages);
+      if (languagesChecks.size !== 0) {
+        languagesChecks.forEach(lang => {
+          words = [...words, ...dictionary[lang]];
+        });
+      }
+    }
+    this.words = new Set<string>(words);
   }
 
   /**
@@ -45,8 +49,6 @@ export default class Filter {
    */
   isProfane(value: string): boolean {
     for (const word of this.words) {
-      console.log(`Word: ${word}, Value: ${value}"`);
-      
       const wordExp = new RegExp(`${word.replace(/(\W)/g, '\\$1')}`, 'gi');
       if (wordExp.test(value)) return true;
     }

@@ -1,4 +1,4 @@
-import { Filter } from '../src';
+import { Filter } from '../dist';
 describe('test profanity', () => {
   it('return false English', () => {
     const filter = new Filter();
