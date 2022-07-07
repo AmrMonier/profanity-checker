@@ -38,7 +38,7 @@ export default {
   norwegian: Norwegian.words,
   persian: Persian.words,
   polish: Polish.words,
-  portuguese: Portuguese,
+  portuguese: Portuguese.words,
   russian: Russian.words,
   turkish: Turkish.words,
   swedish: Swedish.words,

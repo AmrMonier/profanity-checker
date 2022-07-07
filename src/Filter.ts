@@ -1,4 +1,4 @@
-import dictionary from "./data/dictionary";
+import dictionary from './data/dictionary';
 
 // enum SupportedLanguages {
 //   arabic,
@@ -31,39 +31,58 @@ export default class Filter {
    */
   constructor(config?: {
     languages: (
-      | "arabic"
-      | "chinese"
-      | "czech"
-      | "danish"
-      | "english"
-      | "esperanto"
-      | "finnish"
-      | "french"
-      | "german"
-      | "hindi"
-      | "hungarian"
-      | "italian"
-      | "japanese"
-      | "korean"
-      | "norwegian"
-      | "persian"
-      | "polish"
-      | "portuguese"
-      | "russian"
-      | "turkish"
-      | "swedish"
-      | "thai"
+      | 'arabic'
+      | 'chinese'
+      | 'czech'
+      | 'danish'
+      | 'english'
+      | 'esperanto'
+      | 'finnish'
+      | 'french'
+      | 'german'
+      | 'hindi'
+      | 'hungarian'
+      | 'italian'
+      | 'japanese'
+      | 'korean'
+      | 'norwegian'
+      | 'persian'
+      | 'polish'
+      | 'portuguese'
+      | 'russian'
+      | 'turkish'
+      | 'swedish'
+      | 'thai'
     )[];
   }) {
     this.words = new Set<string>();
-    const languagesChecks = new Set<string>(config?.languages);
+    const languagesChecks = new Set<
+      | 'arabic'
+      | 'chinese'
+      | 'czech'
+      | 'danish'
+      | 'english'
+      | 'esperanto'
+      | 'finnish'
+      | 'french'
+      | 'german'
+      | 'hindi'
+      | 'hungarian'
+      | 'italian'
+      | 'japanese'
+      | 'korean'
+      | 'norwegian'
+      | 'persian'
+      | 'polish'
+      | 'portuguese'
+      | 'russian'
+      | 'turkish'
+      | 'swedish'
+      | 'thai'
+    >(config?.languages);
     if (languagesChecks.size !== 0) {
-      languagesChecks.forEach((lang) => {
-        if (dictionary[lang])
-          this.words = new Set<string>([
-            ...this.words,
-            ...new Set<string>(dictionary[lang] || []),
-          ]);
+      languagesChecks.forEach(lang => {
+        this.words = new Set<string>([...this.words, ...dictionary[lang]]);
       });
     } else this.words = new Set<string>(dictionary.english);
   }
@@ -76,8 +95,8 @@ export default class Filter {
   isProfane(value: string): boolean {
     let profaneWordsCounter = 0;
 
-    this.words.forEach((word) => {
-      const wordExp = new RegExp(`${word.replace(/(\W)/g, "\\$1")}`, "gi");
+    this.words.forEach(word => {
+      const wordExp = new RegExp(`${word.replace(/(\W)/g, '\\$1')}`, 'gi');
       wordExp.test(value) ? profaneWordsCounter++ : null;
     });
     return !!profaneWordsCounter;
