@@ -31,7 +31,7 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "name": "profanity-checker",
+  "name": "profanity-check",
   "author": "Amr Monier",
   "module": "dist/profanity-checker.esm.js",
   "size-limit": [
