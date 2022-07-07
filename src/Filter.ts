@@ -1,29 +1,5 @@
 import dictionary from './data/dictionary';
 
-// enum SupportedLanguages {
-//   arabic,
-//   chinese,
-//   czech,
-//   danish,
-//   english,
-//   esperanto,
-//   finnish,
-//   french,
-//   german,
-//   hindi,
-//   hungarian,
-//   italian,
-//   japanese,
-//   korean,
-//   norwegian,
-//   persian,
-//   polish,
-//   portuguese,
-//   russian,
-//   turkish,
-//   swedish,
-//   thai,
-// }
 export default class Filter {
   private words: Set<string>;
   /**
