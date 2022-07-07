@@ -44,14 +44,10 @@ export default class Filter {
    * @returns
    */
   isProfane(value: string): boolean {
-    let profaneWordsCounter = 0;
-
-    this.words.forEach(word => {
+    for (const word of this.words) {
       const wordExp = new RegExp(`${word.replace(/(\W)/g, '\\$1')}`, 'gi');
-      if (wordExp.test(value)) {
-        profaneWordsCounter++;
-      }
-    });
-    return !!profaneWordsCounter;
+      if (wordExp.test(value)) return true;
+    }
+    return false;
   }
 }
