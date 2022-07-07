@@ -51,5 +51,34 @@
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
-  }
+  },
+  "keywords": [
+    "profanity",
+    "profane",
+    "checker",
+    "validation",
+    "multi-language",
+    "arabic",
+    "chinese",
+    "czech",
+    "danish",
+    "english",
+    "esperanto",
+    "finnish",
+    "french",
+    "german",
+    "hindi",
+    "hungarian",
+    "italian",
+    "japanese",
+    "korean",
+    "norwegian",
+    "persian",
+    "polish",
+    "portuguese",
+    "russian",
+    "turkish",
+    "swedish",
+    "thai"
+  ]
 }
