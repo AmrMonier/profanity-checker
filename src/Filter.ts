@@ -45,6 +45,8 @@ export default class Filter {
    */
   isProfane(value: string): boolean {
     for (const word of this.words) {
+      console.log(`Word: ${word}, Value: ${value}"`);
+      
       const wordExp = new RegExp(`${word.replace(/(\W)/g, '\\$1')}`, 'gi');
       if (wordExp.test(value)) return true;
     }
