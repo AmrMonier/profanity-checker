@@ -80,5 +80,9 @@
     "turkish",
     "swedish",
     "thai"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmrMonier/profanity-checker.git"
+  }
 }
