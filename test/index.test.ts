@@ -16,7 +16,7 @@ describe('test profanity', () => {
   });
   it('return true Arabic', () => {
     const filter = new Filter({ languages: ['arabic'] });
-    
+
     expect(filter.isProfane('الراجل بتاع السوبر ماركت معرص')).toBe(true);
   });
 });
