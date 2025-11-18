@@ -19,4 +19,15 @@ describe('test profanity', () => {
 
     expect(filter.isProfane('الراجل بتاع السوبر ماركت معرص')).toBe(true);
   });
+
+  it('return false Spanish', () => {
+    const filter = new Filter({ languages: ['spanish'] });
+
+    expect(filter.isProfane('él va a casa')).toBe(false);
+  });
+  it('return true Spanish', () => {
+    const filter = new Filter({ languages: ['spanish'] });
+
+    expect(filter.isProfane('ese gilipollas')).toBe(true);
+  });
 });

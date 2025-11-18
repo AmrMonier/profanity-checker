@@ -77,9 +77,10 @@
     "polish",
     "portuguese",
     "russian",
-    "turkish",
+    "spanish",
     "swedish",
-    "thai"
+    "thai",
+    "turkish"
   ],
   "repository": {
     "type": "git",
