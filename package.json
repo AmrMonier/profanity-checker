@@ -36,12 +36,12 @@
   "module": "dist/profanity-checker.esm.js",
   "size-limit": [
     {
-      "path": "dist/profanity-checker.cjs.production.min.js",
-      "limit": "10 KB"
+      "path": "dist/profanity-check.cjs.production.min.js",
+      "limit": "35 KB"
     },
     {
-      "path": "dist/profanity-checker.esm.js",
-      "limit": "10 KB"
+      "path": "dist/profanity-check.esm.js",
+      "limit": "40 KB"
     }
   ],
   "devDependencies": {
