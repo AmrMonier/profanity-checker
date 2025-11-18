@@ -22,9 +22,10 @@ This is a multi-language profanity check for validating text is clear and doesn'
   - Polish
   - Portuguese
   - Russian
-  - Turkish
+  - Spanish
   - Swedish
   - Thai
+  - Turkish
 
 
 ## Installation

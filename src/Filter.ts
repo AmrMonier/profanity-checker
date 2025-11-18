@@ -20,9 +20,10 @@ type language =
   | 'polish'
   | 'portuguese'
   | 'russian'
-  | 'turkish'
+  | 'spanish'
   | 'swedish'
-  | 'thai';
+  | 'thai'
+  | 'turkish';
 export default class Filter {
   private words: Set<string>;
   /**

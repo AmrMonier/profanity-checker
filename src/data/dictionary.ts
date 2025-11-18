@@ -20,6 +20,7 @@ import Japanese from './japanese.json';
 import Turkish from './turkish.json';
 import Swedish from './swedish.json';
 import Thai from './thai.json';
+import Spanish from './spanish.json';
 export default {
   arabic: Arabic.words,
   chinese: Chinese.words,
@@ -40,7 +41,8 @@ export default {
   polish: Polish.words,
   portuguese: Portuguese.words,
   russian: Russian.words,
-  turkish: Turkish.words,
+  spanish: Spanish.words,
   swedish: Swedish.words,
   thai: Thai.words,
+  turkish: Turkish.words,
 };
