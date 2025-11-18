@@ -1,89 +1,33 @@
 {
-  "version": "0.0.3",
+  "name": "@profanity-checker/root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Multi-language profanity checker monorepo",
   "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why"
-  },
-  "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
-  "name": "profanity-check",
   "author": "Amr Monier",
-  "module": "dist/profanity-checker.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/profanity-check.cjs.production.min.js",
-      "limit": "35 KB"
-    },
-    {
-      "path": "dist/profanity-check.esm.js",
-      "limit": "40 KB"
-    }
-  ],
-  "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
-    "husky": "^6.0.0",
-    "size-limit": "^7.0.8",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.7.4"
-  },
-  "keywords": [
-    "profanity",
-    "profane",
-    "checker",
-    "validation",
-    "multi-language",
-    "arabic",
-    "chinese",
-    "czech",
-    "danish",
-    "english",
-    "esperanto",
-    "finnish",
-    "french",
-    "german",
-    "hindi",
-    "hungarian",
-    "italian",
-    "japanese",
-    "korean",
-    "norwegian",
-    "persian",
-    "polish",
-    "portuguese",
-    "russian",
-    "spanish",
-    "swedish",
-    "thai",
-    "turkish"
-  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/AmrMonier/profanity-checker.git"
-  }
+  },
+  "scripts": {
+    "build": "pnpm -r --filter='./packages/*' run build",
+    "test": "pnpm --filter @profanity-checker/profanity-checker test",
+    "lint": "pnpm -r --filter='./packages/*' run lint",
+    "clean": "pnpm -r --filter='./packages/*' run clean",
+    "dev": "pnpm -r --parallel --filter='./packages/*' run dev"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^11.1.6",
+    "@types/node": "^22.10.1",
+    "prettier": "^3.4.2",
+    "size-limit": "^11.1.6",
+    "tsup": "^8.3.5",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  },
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "packageManager": "pnpm@9.15.0"
 }

@@ -1,0 +1,41 @@
+{
+  "name": "@profanity-checker/core",
+  "version": "1.0.0",
+  "description": "Core functionality for profanity checking",
+  "license": "MIT",
+  "author": "Amr Monier",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "lint": "prettier --check src/**/*.ts"
+  },
+  "keywords": [
+    "profanity",
+    "profane",
+    "checker",
+    "validation",
+    "multi-language"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmrMonier/profanity-checker.git",
+    "directory": "packages/core"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

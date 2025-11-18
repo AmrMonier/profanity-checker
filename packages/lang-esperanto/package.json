@@ -1,0 +1,38 @@
+{
+  "name": "@profanity-checker/lang-esperanto",
+  "version": "1.0.0",
+  "description": "Esperanto language plugin for profanity checker",
+  "license": "MIT",
+  "author": "Amr Monier",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "profanity",
+    "esperanto",
+    "language-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmrMonier/profanity-checker.git",
+    "directory": "packages/lang-esperanto"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
