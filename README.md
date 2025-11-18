@@ -4,16 +4,38 @@ A modular, multi-language profanity checker library built with TypeScript. Suppo
 
 ## Features
 
-- 🌍 **Multi-language support**: 23 languages available
-- 🧩 **Modular architecture**: Import only the languages you need
-- 🎯 **Tree-shakeable**: Optimized bundle sizes
-- 📦 **Monorepo structure**: Clean separation of concerns
-- 🔍 **Advanced filtering**: Check, match, and sanitize profane content
-- 💪 **Type-safe**: Written in TypeScript with full type definitions
+- **Multi-language support**: 23 languages available
+- **Modular architecture**: Import only the languages you need
+- **Tree-shakeable**: Optimized bundle sizes
+- **Monorepo structure**: Clean separation of concerns
+- **Advanced filtering**: Check, match, and sanitize profane content
+- **Type-safe**: Written in TypeScript with full type definitions
 
 ## Supported Languages
 
-Arabic, Chinese, Czech, Danish, English, Esperanto, Finnish, French, German, Hindi, Hungarian, Italian, Japanese, Korean, Norwegian, Persian, Polish, Portuguese, Russian, Spanish, Swedish, Thai, Turkish
+- Arabic
+- Chinese
+- Czech
+- Danish
+- English
+- Esperanto
+- Finnish
+- French
+- German
+- Hindi
+- Hungarian
+- Italian
+- Japanese
+- Korean
+- Norwegian
+- Persian
+- Polish
+- Portuguese
+- Russian
+- Spanish
+- Swedish
+- Thai
+- Turkish
 
 ## Installation
 
