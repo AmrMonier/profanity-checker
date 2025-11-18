@@ -1,0 +1,125 @@
+name: Publish Package (Manual)
+on:
+  workflow_dispatch:
+    inputs:
+      package:
+        description: 'Package to publish (e.g., core, profanity-checker, lang-english)'
+        required: true
+        type: choice
+        options:
+          - core
+          - profanity-checker
+          - lang-arabic
+          - lang-chinese
+          - lang-czech
+          - lang-danish
+          - lang-english
+          - lang-esperanto
+          - lang-finnish
+          - lang-french
+          - lang-german
+          - lang-hindi
+          - lang-hungarian
+          - lang-italian
+          - lang-japanese
+          - lang-korean
+          - lang-norwegian
+          - lang-persian
+          - lang-polish
+          - lang-portuguese
+          - lang-russian
+          - lang-spanish
+          - lang-swedish
+          - lang-thai
+          - lang-turkish
+      version:
+        description: 'Version bump type'
+        required: true
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+          - skip
+      tag:
+        description: 'NPM tag (e.g., latest, beta, next)'
+        required: false
+        default: 'latest'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: https://registry.npmjs.org/
+          cache: 'pnpm'
+
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Bump version
+        if: inputs.version != 'skip'
+        run: |
+          cd packages/${{ inputs.package }}
+          npm version ${{ inputs.version }} --no-git-tag-version
+          NEW_VERSION=$(node -p "require('./package.json').version")
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Build package
+        run: pnpm --filter "@profanity-checker/${{ inputs.package }}" build
+
+      - name: Run tests
+        run: pnpm test
+        continue-on-error: true
+
+      - name: Commit version bump
+        if: inputs.version != 'skip'
+        run: |
+          git add packages/${{ inputs.package }}/package.json
+          git commit -m "chore: bump @profanity-checker/${{ inputs.package }} to v${{ env.NEW_VERSION }}"
+          git push
+
+      - name: Publish to npm
+        run: pnpm --filter "@profanity-checker/${{ inputs.package }}" publish --access public --no-git-checks --tag ${{ inputs.tag }}
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Create git tag
+        if: inputs.version != 'skip'
+        run: |
+          TAG_NAME="${{ inputs.package }}-v${{ env.NEW_VERSION }}"
+          git tag $TAG_NAME
+          git push origin $TAG_NAME
+
+      - name: Create GitHub Release
+        if: inputs.version != 'skip'
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: "${{ inputs.package }}-v${{ env.NEW_VERSION }}"
+          release_name: "@profanity-checker/${{ inputs.package }} v${{ env.NEW_VERSION }}"
+          body: |
+            Published @profanity-checker/${{ inputs.package }}@${{ env.NEW_VERSION }} to npm
+
+            Install: `npm install @profanity-checker/${{ inputs.package }}@${{ env.NEW_VERSION }}`
+          draft: false
+          prerelease: ${{ inputs.tag != 'latest' }}

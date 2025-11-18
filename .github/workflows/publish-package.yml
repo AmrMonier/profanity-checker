@@ -1,0 +1,60 @@
+name: Publish Individual Package
+on:
+  push:
+    tags:
+      - 'core-v*'
+      - 'profanity-checker-v*'
+      - 'lang-*-v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20.x'
+          registry-url: https://registry.npmjs.org/
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Extract package name from tag
+        id: package
+        run: |
+          TAG=${GITHUB_REF#refs/tags/}
+          # Remove version suffix (e.g., core-v1.0.0 -> core)
+          PACKAGE=$(echo $TAG | sed 's/-v[0-9].*//')
+          echo "name=$PACKAGE" >> $GITHUB_OUTPUT
+          echo "tag=$TAG" >> $GITHUB_OUTPUT
+
+      - name: Build package
+        run: pnpm --filter "@profanity-checker/${{ steps.package.outputs.name }}" build
+
+      - name: Test
+        run: pnpm test
+        continue-on-error: true
+
+      - name: Publish package
+        run: pnpm --filter "@profanity-checker/${{ steps.package.outputs.name }}" publish --access public --no-git-checks
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.package.outputs.tag }}
+          release_name: "@profanity-checker/${{ steps.package.outputs.name }} ${{ steps.package.outputs.tag }}"
+          draft: false
+          prerelease: false
