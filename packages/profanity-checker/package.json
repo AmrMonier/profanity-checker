@@ -1,0 +1,91 @@
+{
+  "name": "@profanity-checker/profanity-checker",
+  "version": "1.0.0",
+  "description": "Multi-language profanity checker with modular language support",
+  "license": "MIT",
+  "author": "Amr Monier",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "clean": "rm -rf dist",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "keywords": [
+    "profanity",
+    "profane",
+    "checker",
+    "validation",
+    "multi-language",
+    "arabic",
+    "chinese",
+    "czech",
+    "danish",
+    "english",
+    "esperanto",
+    "finnish",
+    "french",
+    "german",
+    "hindi",
+    "hungarian",
+    "italian",
+    "japanese",
+    "korean",
+    "norwegian",
+    "persian",
+    "polish",
+    "portuguese",
+    "russian",
+    "spanish",
+    "swedish",
+    "thai",
+    "turkish"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AmrMonier/profanity-checker.git",
+    "directory": "packages/profanity-checker"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@profanity-checker/core": "workspace:*",
+    "@profanity-checker/lang-arabic": "workspace:*",
+    "@profanity-checker/lang-chinese": "workspace:*",
+    "@profanity-checker/lang-czech": "workspace:*",
+    "@profanity-checker/lang-danish": "workspace:*",
+    "@profanity-checker/lang-english": "workspace:*",
+    "@profanity-checker/lang-esperanto": "workspace:*",
+    "@profanity-checker/lang-finnish": "workspace:*",
+    "@profanity-checker/lang-french": "workspace:*",
+    "@profanity-checker/lang-german": "workspace:*",
+    "@profanity-checker/lang-hindi": "workspace:*",
+    "@profanity-checker/lang-hungarian": "workspace:*",
+    "@profanity-checker/lang-italian": "workspace:*",
+    "@profanity-checker/lang-japanese": "workspace:*",
+    "@profanity-checker/lang-korean": "workspace:*",
+    "@profanity-checker/lang-norwegian": "workspace:*",
+    "@profanity-checker/lang-persian": "workspace:*",
+    "@profanity-checker/lang-polish": "workspace:*",
+    "@profanity-checker/lang-portuguese": "workspace:*",
+    "@profanity-checker/lang-russian": "workspace:*",
+    "@profanity-checker/lang-spanish": "workspace:*",
+    "@profanity-checker/lang-swedish": "workspace:*",
+    "@profanity-checker/lang-thai": "workspace:*",
+    "@profanity-checker/lang-turkish": "workspace:*"
+  }
+}
