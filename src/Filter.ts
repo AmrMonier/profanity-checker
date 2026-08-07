@@ -55,4 +55,15 @@ export default class Filter {
     }
     return false;
   }
+
+  /**
+   * Sanitizes the input string by replacing profane words with asterisks.
+   * @param value The string to sanitize.
+   * @returns The sanitized string.
+   */
+  sanitize(value: string): string {
+    const sanitizedWords = Array.from(this.words).map(word => word.replace(/(\W)/g, '\\$1')).sort((a, b) => b.length - a.length);
+    const regex = new RegExp(`(${sanitizedWords.join('|')})`, 'gi');
+    return value.replace(regex, match => '*'.repeat(match.length));
+  }
 }
